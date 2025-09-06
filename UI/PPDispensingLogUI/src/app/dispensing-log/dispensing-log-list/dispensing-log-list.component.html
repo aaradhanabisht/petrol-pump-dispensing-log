@@ -1,0 +1,35 @@
+<div class="container">
+    <h1 class="mt-3">Dispensing Log List</h1>
+<!-- 
+    <div class="d-flex justify-content-end mt-3">
+        <a [routerLink]="['/admin/categories/add']" class="btn btn-primary">Add Category</a>
+    </div> -->
+
+    <ng-container *ngIf="dispensingLogs$ | async as logs">
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Dispenser Number</th>
+                    <th>Quantity</th>
+                    <th>Vehicle Number</th>
+                    <th>Payment Mode</th>
+                    <th>Payment Proof</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let log of logs">
+                    <td>{{log.timestamp | date:'medium' }}</td>
+                    <td>{{ DispenserNumberEnum[log.dispenserNo] }}</td>
+                    <td>{{log.quantityFilled}}</td>
+                    <td>{{log.vehicleNumber}}</td>
+                    <td>{{ PaymentModeEnum[log.paymentMode] }}</td>
+                    <td>
+                        <a [href]="log.paymentProofUrl" target="_blank" rel="noopener">View</a>
+                        <a [href]="log.paymentProofUrl" download class="btn btn-light">Download</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+</div>

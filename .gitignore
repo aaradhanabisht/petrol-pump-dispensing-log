@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/API/PPDispensingLogApp/PPDispensingLogApp/obj
+/API/PPDispensingLogApp/.vs/PPDispensingLogApp
+/API/PPDispensingLogApp/PPDispensingLogApp/bin/Debug/net8.0
+/UI/PPDispensingLogUI/node_modules
+/UI/PPDispensingLogUI/.vscode
+/UI/PPDispensingLogUI/.angular/cache/15.2.11

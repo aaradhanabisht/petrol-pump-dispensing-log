@@ -44,9 +44,9 @@ This full-stack web application allows authenticated users to log fuel dispensin
 
 - **Frontend:** Angular 18
 - **Backend:** ASP.NET Core 8 Web API  
-- **Database:** SQL (e.g., SQL Server)  
+- **Database:** SQL Server  
 - **ORM:** Entity Framework Core  
-- **Runtime:** Node.js 18 (for Angular development)  
+- **Runtime:** Node.js 18
 
 ---
 
@@ -55,7 +55,57 @@ This full-stack web application allows authenticated users to log fuel dispensin
 - Node.js 18+  
 - Angular CLI  
 - .NET 8 SDK  
-- SQL Server or compatible SQL database  
+- SQL Server
 
 ---
 
+## Setup Instructions
+
+### 1. Backend Setup
+
+1. Clone the repository and navigate to the backend folder:
+   ```
+   cd ../API/PPDispensingLogApp
+   ```
+2. Update appsettings.json with your database connection string:
+   ```json
+   "ConnectionStrings": {"DispenserLogAppConnectionString": "Server=SERVER_NAME;Database=DB_NAME;TrustServerCertificate=True;Trusted_Connection=True"}
+   ```
+3. Restore dependencies:
+   ```
+   dotnet restore
+   ```
+4. Apply initial migration and update the database through Package manager console:
+   ```
+   Add-Migration MIGRATION_NAME
+   Update-Database
+   ```
+5. Run the backend:
+   ```
+   dotnet run
+   ```
+
+### 2. Frontend Setup
+
+1. Navigate to the frontend folder::
+   ```
+   cd ..UI/PPDispensingLogUI
+   ```
+2. Install dependencies::
+   ```bash
+   npm install
+   ```
+3. Configure the API base URL in src/environments if needed:
+   ```
+   apiUrl: 'https://YOUR_API_SERVER/api'
+   ```
+4. Start the Angular development server:
+   ```bash
+   ng serve -o
+   ```
+
+
+## Notes
+- Make sure to run the db migration and update commands.
+- Ensure that the API service is running before running the UI Application.
+  

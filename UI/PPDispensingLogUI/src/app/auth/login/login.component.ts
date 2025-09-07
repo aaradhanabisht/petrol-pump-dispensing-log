@@ -11,6 +11,7 @@ import { DispensingLogService } from 'src/app/dispensing-log/services/dispensing
 })
 export class LoginComponent {
 model: LoginRequest;
+loginError: string = '';
 
 constructor(private loginService: LoginService, private router: Router, private logService: DispensingLogService){
   this.model = {
@@ -36,7 +37,7 @@ onFormSubmit():void{
         })
       },
       error: (err) => {
-
+        this.loginError = err.error;
       }
     })
   }

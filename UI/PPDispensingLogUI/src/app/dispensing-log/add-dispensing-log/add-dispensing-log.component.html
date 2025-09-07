@@ -36,7 +36,7 @@
                 name="paymentProof">
             </div>
              <div class="mt-3">
-               <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>
+               <button type="submit" class="btn btn-primary" [disabled]="form.invalid || !model.paymentProof">Save</button>
             </div>
         </div>
     </form>

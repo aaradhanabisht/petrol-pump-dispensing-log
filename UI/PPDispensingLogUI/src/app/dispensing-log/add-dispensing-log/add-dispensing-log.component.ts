@@ -12,10 +12,10 @@ import { Router } from '@angular/router';
 export class AddDispensingLogComponent {
   model: CreateLog;
   dispenserOptions = [
-  { key: DispenserNoEnum.D_01, value: "D 01" },
-  { key: DispenserNoEnum.D_02, value: "D 02" },
-  { key: DispenserNoEnum.D_03, value: "D 03" },
-  { key: DispenserNoEnum.D_04, value: "D 04" }
+  { key: DispenserNoEnum.D_01, value: "D_01" },
+  { key: DispenserNoEnum.D_02, value: "D_02" },
+  { key: DispenserNoEnum.D_03, value: "D_03" },
+  { key: DispenserNoEnum.D_04, value: "D_04" }
 ];
 paymentModeOptions = [
   { key: PaymentModeEnum.Cash, value: "Cash" },

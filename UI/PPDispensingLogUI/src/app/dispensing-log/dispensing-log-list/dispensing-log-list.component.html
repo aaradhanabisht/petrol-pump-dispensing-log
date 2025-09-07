@@ -29,7 +29,7 @@
     [(ngModel)]="filters.endDate" [min]="filters.startDate || minDate" [max]="maxDate" (change)="applyFilters()">
   </div>
 </div>
-<div *ngIf="dateValidationMsg" class="text-danger mb-3" style="float: right; margin-right: 230px;">
+<div *ngIf="dateValidationMsg" class="text-danger mb-3 col-6" style="float: right;">
   {{ dateValidationMsg }}
 </div>
 

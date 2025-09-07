@@ -1,11 +1,39 @@
 <div class="container">
+    <button class="btn btn-secondary" style="float: right;" (click)="onLogout()">Logout</button>
     <h1 class="mt-3">Dispensing Log List</h1>
-<!-- 
-    <div class="d-flex justify-content-end mt-3">
-        <a [routerLink]="['/admin/categories/add']" class="btn btn-primary">Add Category</a>
-    </div> -->
 
-    <ng-container *ngIf="dispensingLogs$ | async as logs">
+    <div class="d-flex justify-content-end mt-3">
+        <a [routerLink]="['/log/add']" class="btn btn-primary">Add Log</a>
+    </div> 
+    <div class="row mb-3 align-items-end">
+  <div class="col">
+    <label>Dispenser No</label>
+    <select class="form-select" [(ngModel)]="filters.dispenserNo" (ngModelChange)="applyFilters()">
+      <option *ngFor="let d of dispenserOptions" [value]="d.key">{{d.value}}</option>
+    </select>
+  </div>
+  <div class="col">
+    <label>Payment Mode</label>
+    <select class="form-select" [(ngModel)]="filters.paymentMode" (ngModelChange)="applyFilters()">
+      <option *ngFor="let p of paymentModeOptions" [value]="p.key">{{p.value}}</option>
+    </select>
+  </div>
+  <div class="col">
+    <label for="startDate">Start Date</label>
+    <input type="date" id="startDate" name="startDate" class="form-control"
+    [(ngModel)]="filters.startDate" [min]="minDate" [max]="filters.endDate || maxDate" (change)="applyFilters()">
+  </div>
+  <div class="col">
+    <label for="endDate">End Date</label>
+    <input type="date" id="endDate" name="endDate" class="form-control"
+    [(ngModel)]="filters.endDate" [min]="filters.startDate || minDate" [max]="maxDate" (change)="applyFilters()">
+  </div>
+</div>
+<div *ngIf="dateValidationMsg" class="text-danger mb-3" style="float: right; margin-right: 230px;">
+  {{ dateValidationMsg }}
+</div>
+
+    <ng-container *ngIf="filteredLogs else loading">
         <table class="table table-bordered mt-3">
             <thead>
                 <tr>
@@ -18,18 +46,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let log of logs">
+                <tr *ngFor="let log of filteredLogs">
                     <td>{{log.timestamp | date:'medium' }}</td>
                     <td>{{ DispenserNumberEnum[log.dispenserNo] }}</td>
                     <td>{{log.quantityFilled}}</td>
                     <td>{{log.vehicleNumber}}</td>
                     <td>{{ PaymentModeEnum[log.paymentMode] }}</td>
-                    <td>
-                        <a [href]="log.paymentProofUrl" target="_blank" rel="noopener">View</a>
-                        <a [href]="log.paymentProofUrl" download class="btn btn-light">Download</a>
+                    <td style="text-align: center;">
+                        <a class="mt-" [href]="log.paymentProofUrl" target="_blank" rel="noopener">View</a>
+                        <button (click)="onDownload(log.paymentProofUrl)" class="btn btn-link ms-2 mb-1">Download</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </ng-container>
+
+    <ng-template #loading>
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 150px;">
+      <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status"></div>
+    </div>
+  </ng-template>
 </div>

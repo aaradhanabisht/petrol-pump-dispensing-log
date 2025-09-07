@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PPDispensingLogApp.Models.DTO;
 using PPDispensingLogApp.Repositories.Interface;
@@ -7,6 +8,7 @@ namespace PPDispensingLogApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class DispensingRecordController : ControllerBase
     {
         private readonly IDispensingRecordRepository dispensingRecordRepository;

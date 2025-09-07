@@ -1,1 +1,43 @@
-<p>add-dispensing-log works!</p>
+<div class="container">
+    <h1 class="mt-3">Add Dispensing Log</h1>
+
+    <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+        <div class="mt-2">
+            <div class="mt-3">
+                <label class="form-label">Dispenser Number</label>
+                <select class="form-select" name="dispenserNo" required
+                [(ngModel)]="model.dispenserNo">
+            <option [ngValue]="null" disabled selected hidden>Select Dispenser</option>
+            <option *ngFor="let d of dispenserOptions" [ngValue]="d.key">{{d.value}}</option>
+            </select>
+            </div>
+            <div class="mt-3">
+                <label class="form-label">Quantity Filled</label>
+                <input type="number" id="quantityFilled" class="form-control" required
+                name="quantityFilled" [(ngModel)]="model.quantityFilled">
+            </div>
+            <div class="mt-3">
+                <label class="form-label">Vehicle Number</label>
+                <input type="text" id="vehicleNumber" class="form-control" required
+                name="vehicleNumber" [(ngModel)]="model.vehicleNumber">
+            </div>
+            <div class="mt-3">
+                <label class="form-label">Payment Mode</label>
+                <select class="form-select" name="paymentMode" required
+                [(ngModel)]="model.paymentMode">
+            <option [ngValue]="null" disabled selected hidden>Select Payment Mode</option>
+            <option *ngFor="let p of paymentModeOptions" [ngValue]="p.key">{{p.value}}</option>
+            </select>
+            </div>
+            <div class="mt-3">
+                <label class="form-label">Payment Proof</label>
+                <input type="file" id="paymentProof" class="form-control" accept=".jpg, .jpeg, .png, .pdf"
+                (change)="onFileSelected($event)" required
+                name="paymentProof">
+            </div>
+             <div class="mt-3">
+               <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

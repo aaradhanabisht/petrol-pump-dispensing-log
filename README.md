@@ -87,7 +87,7 @@ This full-stack web application allows authenticated users to log fuel dispensin
 
 ### 2. Frontend Setup
 
-1. Navigate to the frontend folder::
+1. Navigate to the frontend folder:
    ```
    cd ..UI/PPDispensingLogUI
    ```
@@ -108,4 +108,9 @@ This full-stack web application allows authenticated users to log fuel dispensin
 ## Notes
 - Make sure to run the db migration and update commands.
 - Ensure that the API service is running before running the UI Application.
+- This application is set up with a single user by default, credentials:
+  ```
+  Username = admin
+  Password = admin@10
+  ```
   
